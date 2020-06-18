@@ -4,11 +4,15 @@ import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import Welcome from '../components/Welcome'
 import Users from '../components/user/Users'
+import Rights from '../components/power/Rights'
+import Roles from '../components/power/Roles'
 
+/* 解决路由相同路径跳转报错的问题 */
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,7 +24,9 @@ const routes = [
     redirect: '/welcome',
     children: [
       { path: '/welcome', component: Welcome },
-      { path: '/users', component: Users }
+      { path: '/users', component: Users },
+      { path: '/rights', component: Rights },
+      { path: '/roles', component: Roles }
     ]
   }
 ]
